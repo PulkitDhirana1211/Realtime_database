@@ -63,7 +63,7 @@ class _CustomDataState extends State<CustomData> {
                         primary: Colors.redAccent,
                       ),
                         onPressed: ()async {
-                        ref.child("Movies").set(controller1.text);
+                        ref.child("Movies").push().set(controller1.text);
                         },
                         child: Text("Submit"),
                     ),
