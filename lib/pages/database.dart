@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:realtime_database/pages/homescreen.dart';
-
 // ignore_for_file: prefer_const_constructors
 class CustomData extends StatefulWidget {
   late final FirebaseApp app;
@@ -13,6 +11,11 @@ class CustomData extends StatefulWidget {
 }
 
 class _CustomDataState extends State<CustomData> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
   var controller1=TextEditingController();
   final referencedatab=FirebaseDatabase.instance;
   @override
@@ -59,12 +62,12 @@ class _CustomDataState extends State<CustomData> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.redAccent,
                       ),
-                        onPressed: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context)=>  HomeScreen()));
+                        onPressed: ()async {
+                        ref.child("Movies").set(controller1.text);
                         },
                         child: Text("Submit"),
-                    )
+                    ),
+
                   ],
                 ),
                 ),
