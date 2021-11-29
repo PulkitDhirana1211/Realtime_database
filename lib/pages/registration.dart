@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:realtime_database/pages/verify.dart';
@@ -11,7 +12,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  late UserCredential userCredential;
   final globalFormKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   var emailcontroller=TextEditingController();
@@ -93,17 +95,18 @@ class _RegisterState extends State<Register> {
                             child: Text('Sign Up',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontFamily: 'RobotoCondensed'),),
                             onPressed: ()  async {
                               try {
-                                _auth.createUserWithEmailAndPassword(
+                                userCredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(
                                     email: emailcontroller.text,
                                     password: passwordcontroller.text
-                                ).then((_){
+                                );
+                                  DatabaseReference userref=FirebaseDatabase.instance.reference().child('users');
+                                  String uid=userCredential.user!.uid;
                                   Navigator.of(context)
-                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify()));
-                                });
+                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify(userCredentials: userCredential)));
+
+
                               } on FirebaseAuthException catch (e) {
-                                if (e.code == 'weak-password') {
-                                  print('The password provided is too weak.');
-                                } else if (e.code == 'email-already-in-use') {
+                                 if (e.code == 'email-already-in-use') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text('Email Already Registered'),
