@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 // ignore_for_file: prefer_const_constructors
 class CustomData extends StatefulWidget {
   late final FirebaseApp app;
-  CustomData({Key? key,required this.app}) : super(key: key);
+  late String uids;
+  CustomData({Key? key,required this.app,required this.uids}) : super(key: key);
 
   @override
-  _CustomDataState createState() => _CustomDataState();
+  _CustomDataState createState() => _CustomDataState(app: app, ids:uids);
 }
 
 class _CustomDataState extends State<CustomData> {
 
+  late final FirebaseApp app;
+  late String ids;
+
+  _CustomDataState({required this.app,required this.ids});
   @override
   void initState() {
     super.initState();
@@ -63,7 +68,10 @@ class _CustomDataState extends State<CustomData> {
                         primary: Colors.redAccent,
                       ),
                         onPressed: ()async {
-                        ref.child("Movies").push().set(controller1.text);
+                            ref
+                            .child(ids)
+                            .child("Movies")
+                            .push().set(controller1.text);
                         },
                         child: Text("Submit"),
                     ),
