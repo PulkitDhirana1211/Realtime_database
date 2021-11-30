@@ -184,14 +184,15 @@ class _RealtimeState extends State<Realtime> {
                                       ),
                                       onPressed: () async {
                                         try {
-                                         await _auth.signInWithEmailAndPassword(
+                                          UserCredential usercredential= await _auth.signInWithEmailAndPassword(
                                               email: controller1.text,
                                               password: controller2.text
-                                          ).then((_){
+                                          );
+                                          String uid=usercredential.user!.uid;
                                             Navigator.of(context)
-                                                .push(MaterialPageRoute(builder: (context)=> CustomData(app: app)));
+                                                .push(MaterialPageRoute(builder: (context)=> CustomData(app: app,uids: uid)));
 
-                                          });
+
                                         } on FirebaseAuthException catch (e) {
                                           if (e.code == 'user-not-found') {
                                             print('No user found for that email.');
