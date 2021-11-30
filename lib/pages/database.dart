@@ -55,7 +55,7 @@ class _CustomDataState extends State<CustomData> {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      "Fav Movies/Games",
+                      "Fav Movies",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                       textAlign: TextAlign.center,
@@ -66,7 +66,7 @@ class _CustomDataState extends State<CustomData> {
                     child: TextField(
                       controller: controller1,
                       decoration: InputDecoration(
-                        hintText: "Enter Your Fav. Movie/Game",
+                        hintText: "Enter Your Fav. Movie",
                         enabledBorder: OutlineInputBorder(),
                       ),
                     ),
