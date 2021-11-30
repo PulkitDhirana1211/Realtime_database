@@ -102,7 +102,7 @@ class _RegisterState extends State<Register> {
                                   DatabaseReference userref=FirebaseDatabase.instance.reference().child('users');
                                   String uid=userCredential.user!.uid;
                                   Navigator.of(context)
-                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify(userCredentials: userCredential)));
+                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify(uid: uid)));
 
 
                               } on FirebaseAuthException catch (e) {
