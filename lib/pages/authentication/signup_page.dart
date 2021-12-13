@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:realtime_database/pages/database.dart';
-import 'package:realtime_database/pages/registration.dart';
-import 'package:realtime_database/pages/reset_pass.dart';
+import 'package:realtime_database/pages/database/database.dart';
+import 'package:realtime_database/pages/authentication/registration.dart';
+import 'package:realtime_database/pages/authentication/reset_pass.dart';
 // ignore_for_file: prefer_const_constructors
 
 class Realtime extends StatefulWidget {
@@ -27,52 +27,6 @@ class _RealtimeState extends State<Realtime> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.red
-        ),
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                title: const Text('Settings'),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                },
-              ),
-
-            ],
-          ),
-        ),
-      ),
       appBar: AppBar(
         title: Center(
           child: Text("Realtime Database",style: TextStyle(fontFamily: 'RobotoCondensed',fontWeight: FontWeight.w700),),
@@ -184,14 +138,13 @@ class _RealtimeState extends State<Realtime> {
                                       ),
                                       onPressed: () async {
                                         try {
-                                         await _auth.signInWithEmailAndPassword(
+                                          UserCredential usercredential= await _auth.signInWithEmailAndPassword(
                                               email: controller1.text,
                                               password: controller2.text
-                                          ).then((_){
+                                          );
+                                          String uid=usercredential.user!.uid;
                                             Navigator.of(context)
-                                                .push(MaterialPageRoute(builder: (context)=> CustomData(app: app)));
-
-                                          });
+                                                .push(MaterialPageRoute(builder: (context)=> CustomData(app: app,uids: uid)));
                                         } on FirebaseAuthException catch (e) {
                                           if (e.code == 'user-not-found') {
                                             print('No user found for that email.');

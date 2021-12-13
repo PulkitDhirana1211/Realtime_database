@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:realtime_database/pages/verify.dart';
+import 'package:realtime_database/pages/authentication/verify.dart';
 // ignore_for_file: prefer_const_constructors
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -102,7 +102,7 @@ class _RegisterState extends State<Register> {
                                   DatabaseReference userref=FirebaseDatabase.instance.reference().child('users');
                                   String uid=userCredential.user!.uid;
                                   Navigator.of(context)
-                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify(userCredentials: userCredential)));
+                                      .pushReplacement(MaterialPageRoute(builder: (context)=> Verify(uid: uid)));
 
 
                               } on FirebaseAuthException catch (e) {
