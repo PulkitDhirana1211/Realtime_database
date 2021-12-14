@@ -71,22 +71,50 @@ class _CustomDataState extends State<CustomData> {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.redAccent,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.redAccent,
+                      ),
+                      onPressed: () async {
+                        ref
+                            .child(ids)
+                            .child("Movies")
+                            .push()
+                            .set({"Movie Title" : controller1.text});
+                        setState(() {
+                          abc.add(controller1.text);
+                        });
+                      },
+                      child: Text("Submit"),
                     ),
-                    onPressed: () async {
-                      ref
-                          .child(ids)
-                          .child("Movies")
-                          .push()
-                          .child("Movie Title")
-                          .set(controller1.text);
-                      setState(() {
-                        abc.add(controller1.text);
-                      });
-                    },
-                    child: Text("Submit"),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.redAccent,
+                        ),
+                        onPressed: () async {
+                          ref.once().then((DataSnapshot snapshot) {
+                            print('Data : ${snapshot.value}');
+                          });
+                        },
+                        child: Text("Read Data"),
+                      ),ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.redAccent,
+                        ),
+                        onPressed: () async {
+                          setState(() {
+                            ref
+                                .child(ids)
+                                .child("Movies")
+                                .remove();
+                          });
+                        },
+                        child: Text("Delete Data"),
+                      ),
+                    ]
                   ),
                   Flexible(
                     child: ListView.builder(
@@ -102,8 +130,6 @@ class _CustomDataState extends State<CustomData> {
                                ref
                                   .child(ids)
                                   .child("Movies")
-                                  .child("Movie Title")
-                                  .child(abc[index])
                                   .remove();
                             });
                           },
