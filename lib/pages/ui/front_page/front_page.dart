@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:realtime_database/pages/authentication/signup_page.dart';
+import 'package:realtime_database/pages/ui/classroom/classroom.dart';
 import 'package:realtime_database/pages/ui/front_page/horizontal_vertical_scrolling.dart';
+import 'package:realtime_database/pages/ui/lectures/lectures.dart';
+import 'package:realtime_database/pages/ui/lost_and_found/laf_form.dart';
 import 'package:realtime_database/pages/ui/star_boys/info.dart';
 // ignore_for_file: prefer_const_constructors
 class FrontPage extends StatefulWidget {
@@ -14,6 +18,76 @@ class FrontPage extends StatefulWidget {
 class _FrontPageState extends State<FrontPage> {
   final  categories cater= categories();
 //  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+//   List<Widget> abc=[
+//     Container(
+//       margin: const EdgeInsets.only(left: 12),
+//       height: 150,
+//       width: 150,
+//       decoration: BoxDecoration(
+//         color: Colors.red,
+//         borderRadius: BorderRadius.circular(20),
+//         image: DecorationImage(
+//           image: AssetImage("assets/p1.png"),
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//       child: Center(
+//         child: Text("",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+//       ),
+//     ),
+//     SizedBox(width: 12),
+//     Container(
+//       margin: const EdgeInsets.only(left: 12),
+//       height: 150,
+//       width: 150,
+//       child: Center(
+//         child: Text(" ",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+//       ),
+//       decoration: BoxDecoration(
+//         color: Colors.red,
+//         borderRadius: BorderRadius.circular(20),
+//         image: DecorationImage(
+//           image: AssetImage("assets/p1.png"),
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//     ),
+//     SizedBox(width: 12),
+//     Container(
+//       margin: const EdgeInsets.only(left: 12),
+//       height: 150,
+//       width: 150,
+//       child: Center(
+//         child: Text(" ",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+//       ),
+//       decoration: BoxDecoration(
+//         color: Colors.red,
+//         borderRadius: BorderRadius.circular(20),
+//         image: DecorationImage(
+//           image: AssetImage("assets/p1.png"),
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//     ),
+//     SizedBox(width: 12),
+//     Container(
+//       margin: const EdgeInsets.only(left: 12),
+//       height: 150,
+//       width: 150,
+//       child: Center(
+//         child: Text(" ",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+//       ),
+//       decoration: BoxDecoration(
+//         color: Colors.red,
+//         borderRadius: BorderRadius.circular(20),
+//         image: DecorationImage(
+//           image: AssetImage("assets/p1.png"),
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//     ),
+//     SizedBox(width: 18),
+//   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +142,10 @@ class _FrontPageState extends State<FrontPage> {
                           ),
                         ),
                         onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Lectures()),
+                          );
 
                         },
                       )
@@ -100,6 +178,10 @@ class _FrontPageState extends State<FrontPage> {
                           ),
                         ),
                       onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LectureClasses()),
+                        );
 
                       },
                     )
@@ -137,6 +219,20 @@ class _FrontPageState extends State<FrontPage> {
                           ),
                         ),
                       onTap: (){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'We are working on Club Activities page.',
+                              style: GoogleFonts.nunito(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            backgroundColor: Colors.pinkAccent,
+                          ),
+                        );
+
                       },
                     )
                   ),
@@ -168,10 +264,10 @@ class _FrontPageState extends State<FrontPage> {
                           ),
                         ),
                         onTap: (){
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => lostandfound()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LostandFound()),
+                          );
                       },
                       )
                   ),
@@ -194,7 +290,7 @@ class _FrontPageState extends State<FrontPage> {
                   SizedBox(width: 15),
                    Flexible(
                      child:
-                     customcard("Judy Williams","https://elle.in/wp-content/uploads/2021/01/CoolGirl_ELLEIndia_Thumbnail.jpg","judy856@gmal.com","Influencer, Traveler, Modelling, Singing and Creative","17.6K","1200")
+                     customcard("Judy Williams","https://ds393qgzrxwzn.cloudfront.net/resize/m600x500/cat1/img/images/0/J7RGiQdufS.jpg","judy856@gmal.com","Influencer, Traveler, Modelling, Singing and Creative","17.6K","1200")
                    ),
                    SizedBox(width: 15),
                   Flexible(
